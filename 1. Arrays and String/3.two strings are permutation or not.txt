@@ -1,0 +1,29 @@
+#### O(n+m) ####
+
+s1="abcde"
+s2="abdce"
+s3="abdde"
+
+def permut(s1,s2):
+	
+	d1={}
+	d2={}
+	for i in s1:
+		if i in d:
+			d[i]+=1
+
+		else:
+			d[i]=1
+	for i in s2:
+		if i in d:
+			d[i]+=1
+
+		else:
+			d[i]=1
+	if d1==d2:
+		return True
+	return False	 	
+
+
+print permut(s1,s2)
+print permut(s2,s3)

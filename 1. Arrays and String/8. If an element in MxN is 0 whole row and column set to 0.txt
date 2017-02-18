@@ -1,0 +1,20 @@
+### O(n^2) ###
+
+mat=[[1,2,3,0],[1,2,3,4],[1,2,0,8]]
+ 
+def matchg(mat):
+	di={}
+	dj={}
+	for i in xrange(len(mat)):
+		for j in xrange(len(mat[0])):
+			if mat[i][j]==0:
+				di[i]=""
+				dj[j]=""
+	for i in xrange(len(mat)):
+		for j in xrange(len(mat[0])):
+			if i in di or j in dj:
+				mat[i][j]=0		
+ 
+matchg(mat)
+for i in mat:
+	print i

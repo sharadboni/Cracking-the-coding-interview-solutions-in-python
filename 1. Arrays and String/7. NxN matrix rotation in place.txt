@@ -1,0 +1,53 @@
+#### O(n^2) ####
+
+######
+# 1. You can either draw a 4x4 matrix and visualize a pattern,i.e, which element goes where #
+# Or #
+# 2. second method is an equation which you remember there is pattern in this equation #
+# These equations are for anticlockwise rotation#
+# temp=mat[i][j]
+# mat[i][j]=mat[j][last]
+# mat[j][last]=mat[last][last-j+i]
+# mat[last][last-j+i]=mat[last-j+i][i]
+# mat[last-j+i][i]=temp
+# here if you get the first equation
+# you can derive all the other equations
+# for the next equation write the RHS as it is in the LHS 
+# for the RHS part of the equation if we take mat[m][n] then n part of LHS and the m part of the RHS in the previous equation is same so add the different parts and subtarct this common part this gets you the n part of the RHS and m part is same as the n part of the LHS.	
+# for clockwise rotation
+# temp=mat[j][last]
+# mat[j][last]=mat[i][j]
+# mat[i][j]=mat[last-j+i][i]
+# mat[last-j+i][i]=mat[last][last-j+i]
+# mat[last][last-j+i]=temp
+######
+
+mat1=[[1,2,3],[4,5,6],[7,8,9]]
+mat2=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+
+def rotatemat(mat):
+	for i in xrange(len(mat)):
+		last=len(mat)-1-i
+		for j in xrange(i,last):
+			temp=mat[i][j]
+			mat[i][j]=mat[j][last]
+			mat[j][last]=mat[last][last-j+i]
+			mat[last][last-j+i]=mat[last-j+i][i]
+			mat[last-j+i][i]=temp
+
+for i in mat1:
+	print i
+print "#####"	
+rotatemat(mat1)
+print "#####"	
+for i in mat1:
+	print i
+print "#####"	
+for i in mat2:
+	print i
+print "#####"	
+rotatemat(mat2)
+print "#####"	
+for i in mat2:
+	print i
+print "#####"			

@@ -1,0 +1,35 @@
+##### with additional data structure O(n) #####
+
+s1="abcdef"
+s2="abacfde"
+
+def unique(s):
+	
+	d={}
+	for i in s:
+		if i in d:
+			return False
+		else:
+			d[i]=1
+
+	return True
+
+print unique(s1)
+print unique(s2)
+
+##### without additional data structure O(nlogn) #####
+
+s1="abcdef"
+s2="abacfde"
+
+def unique(s):
+	
+	s=sorted(s)
+	for i in xrange(len(s)-1):
+		if s[i]==s[i+1]:
+			return False
+	
+	return True
+
+print unique(s1)
+print unique(s2)

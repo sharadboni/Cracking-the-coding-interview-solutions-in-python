@@ -1,0 +1,7 @@
+### O(n) ###
+s1="watrebottle"
+s2="erbottlewat"
+
+s2=s2+s2
+
+isSubstring(s1,s2)
