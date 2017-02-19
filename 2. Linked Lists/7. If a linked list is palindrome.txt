@@ -1,0 +1,46 @@
+###  O(n) ###
+
+class Node:
+	def __init__(self,val):
+		self.next=None
+		self.val=val
+
+head1=Node(1)
+p=head1
+l=[2,3,2,1]
+for i in l:
+	p.next=Node(i)
+	p=p.next
+
+head2=Node(1)
+p=head2
+l=[2,3,1]
+for i in l:
+	p.next=Node(i)
+	p=p.next
+
+
+def palindrome(head):
+	p1=head
+	p2=head
+	stk=[]	
+	while p2:
+		p1=p1.next
+		if not p2.next or not p2.next.next: 
+			p2=p2.next.next
+		else:
+			p1=p1.next
+			break
+	while p1:
+		stk.append(p1.val)
+		p1=p1.next
+		
+	while stk:
+		if stk.pop()==head.val:
+			head=head.next
+		else:
+			return False
+	return True	
+	
+print palindrome(head1)
+print palindrome(head2)

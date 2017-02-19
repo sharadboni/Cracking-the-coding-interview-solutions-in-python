@@ -1,0 +1,25 @@
+###  O(n) ###
+
+class Node:
+	def __init__(self,val):
+		self.next=None
+		self.val=val
+
+head=Node(1)
+p=head
+k=5
+l=[1,2,3,4,3,2,4,5,21,34,31,43,1,2,4,34]
+for i in l:
+	p.next=Node(i)
+	p=p.next
+
+def kth(head,k):
+	c=1
+	if head.next!=None:
+		c=kth(head.next,k)
+	if c==k:
+		print head.val
+	return 1+c 	
+	
+
+kth(head,k)

@@ -1,0 +1,33 @@
+###  O(n) ###
+
+class Node:
+	def __init__(self,val):
+		self.next=None
+		self.val=val
+
+head=Node(1)
+p=head
+l=[2,3,4,5,6,7,8,9]
+for i in l:
+	p.next=Node(i)
+	p=p.next
+	
+p=head
+for i in xrange(5):
+	p=p.next
+
+def remove(p):
+	if p.next:
+	  while p.next:
+		p.val=p.next.val
+		if not p.next.next:
+			p.next=None
+			break
+		p=p.next
+	else:
+		p.val=None	
+	
+remove(p)
+while head:
+	print head.val,
+	head=head.next 

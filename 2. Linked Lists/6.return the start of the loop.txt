@@ -1,0 +1,34 @@
+###  O(n) ###
+
+class Node:
+	def __init__(self,val):
+		self.next=None
+		self.val=val
+
+head=Node(1)
+p=head
+l=[2,3,4]
+for i in l:
+	p.next=Node(i)
+	p=p.next
+p.next=head.next
+
+
+def loop(head):
+	p1=head
+	p2=head
+	while 1:
+		p2=p2.next
+		p1=p1.next.next
+		if p1==p2:
+			break
+	p1=head
+	while 1:
+		if p1==p2:
+			break
+		p2=p2.next
+		p1=p1.next
+	return p1.val
+					
+	
+print loop(head)

@@ -1,0 +1,71 @@
+### with additional data structure O(n) ###
+
+class Node:
+	def __init__(self,val):
+		self.next=None
+		self.val=val
+
+head=Node(1)
+p=head
+l=[1,2,3,4,3,2,4,5,21,34,31,43,1,2,4,34]
+for i in l:
+	p.next=Node(i)
+	p=p.next
+
+def remove(head):
+	if head==None:
+		return None
+		
+	d={}
+	p=head
+
+	d[p.val]=""	
+
+	while p.next:
+		if p.next.val in d:
+			
+			p.next=p.next.next
+				
+		else:
+				d[p.next.val]=""
+				p=p.next
+
+remove(head)
+while head:
+	print head.val,
+	head=head.next 
+
+ 
+### without additional data structure O(n^2) ###
+
+class Node:
+	def __init__(self,val):
+		self.next=None
+		self.val=val
+
+head=Node(1)
+p=head
+l=[1,2,3,4,3,2,4,5,21,34,31,43,1,2,4,34]
+for i in l:
+	p.next=Node(i)
+	p=p.next
+
+def remove(head):
+
+	p=head	
+
+	while p:
+		q=p
+		while q.next:
+			if p.val==q.next.val:
+				q.next=q.next.next
+			else:
+				q=q.next
+		p=p.next
+
+
+
+remove(head)
+while head:
+	print head.val,
+	head=head.next
