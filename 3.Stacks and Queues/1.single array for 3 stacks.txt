@@ -1,0 +1,49 @@
+class stack:
+	
+	def __init__(self,limit):
+		self.stk=[None]*(3*limit)
+		self.ptr=[-1,limit-1,limit*2-1]
+		self.base=[-1,limit-1,limit*2-1]
+		self.limit=[limit,limit*2,limit*3]
+	
+	def push(self,stk_no,val):
+		self.ptr[stk_no-1]+=1
+		if self.ptr[stk_no-1]==self.limit[stk_no-1]:
+			print "stack full"
+			self.ptr[stk_no-1]-=1
+			
+		else:
+			self.stk[self.ptr[stk_no-1]]=val
+
+	def pop(self,stk_no):
+		if self.ptr[stk_no-1]==self.base[stk_no-1]:
+			print "stack empty"
+			return None
+		else:
+			val=self.stk[self.ptr[stk_no-1]]
+			self.stk[self.ptr[stk_no-1]]=None
+			self.ptr[stk_no-1]-=1		
+			return val
+		
+
+stk=stack(5)
+for i in [1,2,3]:
+	stk.push(1,i)
+
+for i in [4,5,6,7,8]:
+	stk.push(2,i)
+
+for i in [9]:
+	stk.push(3,i)
+
+print  stk.stk
+
+stk.push(2,5)
+
+stk.pop(2)
+
+stk.pop(3)
+
+stk.pop(3)
+
+print stk.stk

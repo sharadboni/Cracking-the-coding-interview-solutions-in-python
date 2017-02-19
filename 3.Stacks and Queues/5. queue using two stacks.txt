@@ -1,0 +1,45 @@
+class stack:
+	def __init__(self):
+		self.l=[]
+	def push(self,val):
+		self.l.append(val)
+	def pop(self):
+		return self.l.pop()
+	def isempty(self):
+		return len(self.l)==0
+
+class queue:
+
+	def __init__(self):
+
+		self.stk1=stack()
+		self.stk2=stack()
+		
+	def add(self,val):
+		
+		self.stk1.push(val)
+	
+	def delete(self):
+	
+		if self.stk2.isempty():
+
+			if self.stk1.isempty():
+
+				print "Nothing to delete"
+
+			while not self.stk1.isempty():
+			
+				self.stk2.push(self.stk1.pop())
+
+		return self.stk2.pop()
+
+q=queue()
+for i in [5,4,3,2,1]:
+	q.add(i)
+print q.stk1.l
+print q.stk2.l
+
+q.delete()
+
+print q.stk1.l
+print q.stk2.l 

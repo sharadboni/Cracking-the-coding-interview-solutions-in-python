@@ -1,0 +1,28 @@
+class stack:
+	def __init__(self):
+		self.l=[]
+	def push(self,val):
+		self.l.append(val)
+	def pop(self):
+		return self.l.pop()
+	def isempty(self):
+		return len(self.l)==0
+
+def hanoi(n,from_,to_,with_):
+	if n>0:
+		hanoi(n-1,from_,with_,to_)
+		to_.push(from_.pop())
+		hanoi(n-1,with_,to_,from_)
+
+lst=[5,4,3,2,1]
+a=stack()
+b=stack()
+c=stack()
+for i in lst:
+	a.push(i)
+
+print a.l,b.l,c.l
+
+hanoi(len(lst),a,c,b)  
+
+print a.l,b.l,c.l

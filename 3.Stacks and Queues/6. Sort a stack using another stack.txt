@@ -1,0 +1,37 @@
+class stack:
+	def __init__(self):
+		self.l=[]
+	def push(self,val):
+		self.l.append(val)
+	def pop(self):
+		return self.l.pop()
+	def isempty(self):
+		return len(self.l)==0
+	def peek(self):
+		if not self.isempty():
+			return self.l[-1]
+		else:
+			print "stack is empty"
+
+def sort(a):	
+	b=stack()
+	temp=None
+	while not a.isempty():
+		temp=a.pop()
+		if b.isempty():
+			b.push(temp)
+		else:
+			while not b.isempty() and b.peek()<temp:
+				a.push(b.pop())
+			b.push(temp)
+	while not b.isempty():
+		a.push(b.pop())
+				
+
+a=stack()
+for i in [3,1,6,3,5,7,2,9,0]:
+	a.push(i)
+
+sort(a)
+
+print a.l

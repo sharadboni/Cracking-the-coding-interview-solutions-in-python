@@ -1,0 +1,44 @@
+class stack:
+
+	def __init__(self,limit):
+		self.limit=limit
+		self.stk=[]
+		self.pointer=-1
+	
+	def push(self,val):
+	
+		if self.isempty(self.stk) or len(self.stk[self.pointer])==self.limit:
+			self.pointer+=1
+			self.stk.append([])
+		
+		self.stk[self.pointer].append(val)
+
+	def pop(self):
+	    if not self.isempty(self.stk):
+		if len(self.stk[self.pointer])==1:
+			self.pointer-=1
+			x=self.stk.pop()
+			return x[0]
+		else:
+			return self.stk[self.pointer].pop()	
+	
+	def isempty(self,stk):
+		return len(stk)==0	
+
+	def popat(self,stk_no):
+		if not self.isempty(self.stk[stk_no-1]):
+				return self.stk[stk_no-1].pop()
+
+l=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+stk=stack(5)
+for i in l:
+	stk.push(i)
+print stk.stk
+stk.pop()
+print stk.stk
+for i in xrange(4):
+	stk.popat(2)
+print stk.stk
+stk.popat(2)
+print stk.stk
+	

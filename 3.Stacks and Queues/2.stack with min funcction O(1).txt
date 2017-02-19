@@ -1,0 +1,24 @@
+class stack:
+	def __init__(self):
+		self.l=[]
+		self.minl=[]
+	def push(self,val):
+		self.l.append(val)
+		if self.minl:
+			self.minl.append(min(self.minl[-1],val))
+		else:
+			self.minl.append(val)
+	def pop(self):
+		self.minl.pop()
+		return self.l.pop()
+	def isempty(self):
+		return len(self.l)==0
+	def minimum(self):
+		return self.minl[-1]
+
+lst=[5,3,7,2,8,1]
+stk=stack()
+for i in lst:
+	stk.push(i)
+
+print stk.l,stk.minl  

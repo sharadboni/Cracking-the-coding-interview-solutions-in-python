@@ -1,0 +1,70 @@
+#### with two different queues for cats and dogs ####
+
+class Node:
+	def __init__(self,val):
+		self.next=None
+		self.val=val
+
+class queue:
+	
+	def __init__(self):
+		self.headcat=None
+		self.tailcat=None
+		self.headdog=None
+		self.taildog=None
+		self.count=0
+	
+	def add(self,head,tail,val):
+		if tail==None:
+			head=Node(val)
+			tail=head
+			return head,tail
+		tail.next=Node(val)
+		tail=tail.next
+		return head,tail	
+		
+	def addcat(self):
+		t=self.count
+		self.count+=1
+		print "cat",t
+		self.headcat,self.tailcat=self.add(self.headcat,self.tailcat,t)
+
+	def adddog(self):
+		t=self.count 
+		self.count+=1
+		print "dog",t
+		self.headdog,self.taildog=self.add(self.headdog,self.taildog,t)
+	
+	def dequeueany(self):
+		if self.headcat.val<self.headdog.val:
+			return self.dequeuecat()
+			
+		return self.dequeuedog()
+		
+
+	def dequeuedog(self):
+		self.headdog,self.taildog,val=self.dequeue(self.headdog,self.taildog)
+		return val
+
+	def dequeuecat(self):
+		self.headcat,self.tailcat,val=self.dequeue(self.headcat,self.tailcat)
+		return val
+
+	def dequeue(self,head,tail):
+		if head==tail:
+			val=head.val
+			return None,None,val
+		val=head.val
+		head=head.next
+		return head,tail,val
+		
+#### testing ####
+q=queue()
+q.addcat()
+q.adddog()
+q.adddog()
+q.addcat()
+
+print q.dequeueany()
+print q.dequeuecat()
+print q.dequeuedog()
