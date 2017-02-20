@@ -1,0 +1,12 @@
+def isValidBST(root):
+        if not root:
+            return True
+        
+        return helper(root.left,float("-inf"),root.val) and helper(root.right,root.val,float("inf"))
+    
+def helper(node,l,r):
+        if not node:
+            return True
+        if l<node.val<r:
+            return helper(node.left,l,node.val) and helper(node.right,node.val,r)
+        return False 

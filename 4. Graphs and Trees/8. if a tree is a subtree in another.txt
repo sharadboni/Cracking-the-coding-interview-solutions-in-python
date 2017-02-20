@@ -1,0 +1,105 @@
+################################################################
+class Node:
+
+	def __init__(self,val):
+		self.val=val
+		self.left=None
+		self.right=None
+		self.parent=None
+class bintree:
+	
+	def __init__(self):
+		self.root=None
+# for making a binary tree #
+# to end a binary tree type c#	
+	def addbtree(self,val):
+		self.root=Node(val)
+		self.addbtreehelper(self.root)
+
+	def addbtreehelper(self,node):
+		if not node:
+				return
+		val=raw_input()
+		if val!="c":
+			node.left=Node(int(val))
+		val=raw_input()
+		if val!="c":
+			node.right=Node(int(val))
+		self.addbtreehelper(node.left)
+		self.addbtreehelper(node.right)
+################################################################
+
+def subtree(n1,n2):
+	if n2==None:
+		return True
+	if n1==None:
+		return False
+	if n1.val==n2.val:
+		if helper(n1,n2):
+			return True
+	return subtree(n1.left,n2) or subtree(n1.right,n2)
+	
+	
+def helper(n1,n2):
+	if n1==None and n2==None:
+		return True	
+	if not n1 or not n2:
+		return False
+	if n1.val==n2.val:
+		return helper(n1.left,n2.left) and helper(n1.right,n2.right)
+	return False
+################################################################
+b1=bintree()
+b1.addbtree(3)
+
+###enter the following sequence in std input###
+"""
+2
+1
+1
+2
+c
+c
+1
+c
+c
+3
+c
+c
+2
+c
+c
+5
+c
+1
+c
+c
+"""
+b2=bintree()
+b2.addbtree(2)
+
+###enter the following sequence in std input###
+"""
+1
+c
+c
+3
+c
+c
+"""
+
+b3=bintree()
+b3.addbtree(5)
+
+###enter the following sequence in std input###
+"""
+c
+1
+c
+2
+c
+c
+"""
+
+print subtree(b1.root,b2.root)
+print subtree(b1.root,b3.root)

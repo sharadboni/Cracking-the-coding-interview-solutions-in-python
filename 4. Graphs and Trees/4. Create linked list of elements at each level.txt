@@ -1,0 +1,72 @@
+################################################################
+class Node:
+
+	def __init__(self,val):
+		self.val=val
+		self.left=None
+		self.right=None
+
+class bintree:
+	
+	def __init__(self):
+		self.root=None
+
+# for making a bst #
+	def addbst(self,val):
+		if self.root==None:
+			self.root=Node(val)
+		else:
+			self.addbsthelper(self.root,val)
+	
+	def addbsthelper(self,node,val):
+		if val<node.val:
+			if node.left:
+				self.addbsthelper(node.left,val)
+			else:
+				node.left=Node(val)
+		else:
+			if node.right:
+				self.addbsthelper(node.right,val)
+			else:
+				node.right=Node(val)
+	
+class listNode:
+	def __init__(self,val):
+		self.val=val
+		self.next=None
+################################################################
+from collections import deque
+
+def linkedlist(node):
+	l=[]
+	tail=[]
+	q=deque()
+	q.append((node,1))
+	while q:
+
+		cur,level=q.popleft()
+		if cur:
+			if len(l)==level:
+				tail[level-1].next=listNode(cur.val)
+				tail[level-1]=tail[level-1].next	
+			else:
+				n=listNode(cur.val)
+				l.append(n)
+				tail.append(n)
+	
+			q.append((cur.left,level+1))
+			q.append((cur.right,level+1))
+	for i in l :
+		while i:
+			print i.val,
+			i=i.next
+		print
+
+b=bintree()		
+l=[10,5,3,6,12,11,13,1]
+for i in l:
+	b.addbst(i)
+
+linkedlist(b.root)
+
+	

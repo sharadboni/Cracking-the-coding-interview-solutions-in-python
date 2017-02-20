@@ -1,0 +1,81 @@
+################################################################
+class Node:
+
+	def __init__(self,val):
+		self.val=val
+		self.left=None
+		self.right=None
+		self.parent=None
+class bintree:
+	
+	def __init__(self):
+		self.root=None
+# for making a binary tree #
+# to end a binary tree type c#	
+	def addbtree(self,val):
+		self.root=Node(val)
+		self.addbtreehelper(self.root)
+
+	def addbtreehelper(self,node):
+		if not node:
+				return
+		val=raw_input()
+		if val!="c":
+			node.left=Node(int(val))
+		val=raw_input()
+		if val!="c":
+			node.right=Node(int(val))
+		self.addbtreehelper(node.left)
+		self.addbtreehelper(node.right)
+################################################################
+
+def paths(node,val,l):
+	if node==None:
+		return 
+	lst=list(l)+[node.val]
+	tsum=0
+	for i in xrange(len(lst)-1,-1,-1):
+		tsum+=lst[i]
+		if tsum==val:
+			j=i
+			while j<len(lst):
+				print lst[j],
+				j+=1
+			print
+	paths(node.left,val,lst)
+	paths(node.right,val,lst) 
+	 
+
+################################################################
+val=6
+b=bintree()
+b.addbtree(3)
+#
+###enter the following sequence in std input###
+"""
+2
+1
+1
+2
+c
+c
+1
+c
+c
+3
+c
+c
+2
+c
+c
+5
+c
+1
+c
+c
+"""
+#
+######
+	
+######
+paths(b.root,val,[])

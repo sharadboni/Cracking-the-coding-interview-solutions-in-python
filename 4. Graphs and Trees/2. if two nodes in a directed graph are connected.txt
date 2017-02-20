@@ -1,0 +1,41 @@
+#######################################################
+class Graph:
+	def __init__(self):
+		self.vertices={}
+	def add(self,start,end):
+		if start in self.vertices:
+			self.vertices[start]+=[end]
+		else:
+			self.vertices[start]=[end]
+		if end not in self.vertices:
+			self.vertices[end]=[]
+
+#######################################################
+from collections import deque
+
+def bfs(g,start,end):
+
+	visited={}
+	q=deque()
+	q.append(start)
+	visited[start]=""
+	while q :
+		cur=q.popleft()
+		for i in g.vertices[cur]:
+			if i==end:
+				return True
+			if i not in visited:
+				q.append(i)
+ 				visited[end]=""
+	return False
+
+g=Graph()
+g.add("A","B")
+g.add("B","A")
+g.add("B","C")
+g.add("B","D")
+g.add("C","D")
+g.add("D","E")
+
+print bfs(g,"A","E")
+print bfs(g,"A","F")

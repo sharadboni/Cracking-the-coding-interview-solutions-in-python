@@ -1,0 +1,70 @@
+################################################################
+class Node:
+
+	def __init__(self,val):
+		self.val=val
+		self.left=None
+		self.right=None
+
+class bintree:
+	
+	def __init__(self):
+		self.root=None
+
+# for making a bst #
+	def addbst(self,val):
+		if self.root==None:
+			self.root=Node(val)
+		else:
+			self.addbsthelper(self.root,val)
+	
+	def addbsthelper(self,node,val):
+		if val<node.val:
+			if node.left:
+				self.addbsthelper(node.left,val)
+			else:
+				node.left=Node(val)
+		else:
+			if node.right:
+				self.addbsthelper(node.right,val)
+			else:
+				node.right=Node(val)
+	
+
+################################################################
+#### for checking if the tree made is balanced ####
+def isBalanced(node):
+    return isbalanced(node)!=-1
+	
+def isbalanced(node):
+	
+	if node==None:
+		return 0
+
+	l=isbalanced(node.left)
+	if l==-1:
+		return -1
+	r=isbalanced(node.right)
+	if r==-1:
+		return -1
+		
+	if abs(l-r)>1:
+		return -1
+		
+	return max(l,r)+1 
+######################################################
+
+def createbst(b,l,i,j):
+	if i>j:
+		return
+	mid=(i+j)/2
+	b.addbst(l[mid])
+	createbst(b,l,i,mid-1)
+	createbst(b,l,mid+1,j)
+
+b=bintree()		
+l=[3,5,6,10,11,12,13]
+createbst(b,l,0,len(l)-1)
+print isBalanced(b.root)
+
+	
