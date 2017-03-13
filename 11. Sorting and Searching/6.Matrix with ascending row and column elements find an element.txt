@@ -1,0 +1,63 @@
+### Linear Search O(n+m) ###
+def searchMatrix(matrix, target):
+        if matrix==[]:
+                return False
+        i=0
+        j=len(matrix[0])-1
+        m=len(matrix)
+        n=-1
+        while i<m and j>n:
+                if matrix[i][j]==target:
+                        return True
+                if target>matrix[i][j]:
+                        i+=1
+                else:
+                        j-=1
+        return False  
+
+### Diagonal Binary search O(logn!)###
+
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        if matrix==[]:
+                return False
+        i=0
+        j=len(matrix[0])-1
+        m=len(matrix)
+        n=-1
+
+        while i<m and j>n:
+                if matrix[i][j]==target:
+                        return True
+                if target>matrix[i][j] and self.binsearch(matrix,i+1,m-1,j,"i",target):
+                         return True
+                elif self.binsearch(matrix,i,0,j-1,"j",target):
+                        return True
+                i+=1
+                j-=1
+        return False                
+        
+    def binsearch(self,mat,a,b,c,mode,target):
+            if mode=="j":
+                if b>c:
+                    return False
+                mid=(b+c)/2
+   
+                if mat[a][mid]==target:
+                    return True
+                if target>mat[a][mid]:
+                    return self.binsearch(mat,a,mid+1,c,mode,target)
+                else:
+                    return self.binsearch(mat,a,b,mid-1,mode,target)
+            else:
+             
+                if a>b:
+                    return False
+                mid=(b+a)/2
+         
+                if mat[mid][c]==target:
+                    return True
+                if target>mat[mid][c]:
+                    return self.binsearch(mat,mid+1,b,c,mode,target)
+                else:
+                    return self.binsearch(mat,a,mid-1,c,mode,target)

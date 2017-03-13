@@ -1,0 +1,32 @@
+#### Longest Increasing Subsequence O(nlogn) ####
+
+arr=[(65,100),(70,150),(56,90),(75,190),(60,95),(68,110),(75,120)]
+
+arr.sort()
+
+def binsearch(l,i,j,val):
+	mid=(i+j)/2
+	if l[mid+1]>val>l[mid]:
+		return mid
+	elif val<l[mid]:
+		return binsearch(l,i,mid-1,val)
+	else:
+		return binsearch(l,mid+1,j,val)
+	
+def lis(arr):
+	l=[]
+	for i in arr:
+		i=i[1]
+		if l==[]:
+			l=[i]
+		else:
+			if i<l[0]:
+				l[0]=i
+			elif i>l[-1]:
+				l.append(i)
+			else:
+				l[binsearch(l,1,len(l)-2,i)]=i
+				
+	return len(l)			
+
+print lis(arr)

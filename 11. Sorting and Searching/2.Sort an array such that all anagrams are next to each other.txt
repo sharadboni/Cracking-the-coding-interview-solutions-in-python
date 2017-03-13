@@ -1,0 +1,17 @@
+arr=["abc","def","cba","xyz","bac","fed","qwe"]
+
+def anagrams(arr):
+	d={}
+	for i in arr:
+		x=''.join(sorted(i))
+		if x in d:
+			d[x]+=[i]
+		else:
+			d[x]=[i]
+	arr=[]
+	for j in d.keys():
+		arr+=d[j]				
+	return arr
+
+
+print anagrams(arr)
