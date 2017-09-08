@@ -1,0 +1,17 @@
+# time O(n), space O(n)
+
+from collections import Counter
+def palinPermut(s):
+        d=Counter(s)
+        odd=0
+        for i in d.keys():
+                if odd>1:
+                        return False
+                
+                if i!=' ' and d[i]%2!=0:
+                        odd += 1
+
+        return True
+                
+                
+        
