@@ -1,0 +1,35 @@
+class Node:
+	def __init__(self,data):
+		self.val=data
+		self.next=None
+
+def getahead(head,n):
+	for i in xrange(n):
+		head=head.next
+	return head
+def intersection(l1,l2):
+	head1=l1
+	head2=l2
+	if l1==None or l2==None:
+		return False
+	h1=1
+	while l1.next:
+		h1+=1
+		l1=l1.next
+	h2=1
+	while l2.next:
+		h2+=1
+		l2=l2.next
+	if l1!=l2:
+		return False
+	
+	if h1>h2:
+		head1=getahead(head1,h1-h2)
+	elif h2>h1:
+		head2=getahead(head2,h2-h1)
+	while head2!=head1:
+		head1=head1.next
+		head2=head2.next
+	return head1.val
+		
+	
