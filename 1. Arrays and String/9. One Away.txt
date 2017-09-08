@@ -1,0 +1,67 @@
+# time O(n+m), space O(1)
+
+# iterative
+def oneAway(s1,s2):
+        if len(s2)>len(s1):
+                s1,s2=s2,s1
+        i=0
+        j=0
+        count=0
+        if abs(len(s1)-len(s2))> 1:
+                return False
+        while count<=1 and i<len(s1) and j<len(s2):
+                if s1[i]!=s[j]:
+                        count+=1
+                        if len(s1)==len(s2):
+                                j+=1
+                else:
+                        
+                        j+=1                         
+                i+=1
+        if count>1:
+                return False
+        return True
+        
+# recursive
+def edit(s1,s2,k,n,i,j):
+        if i==-1 and j==-1 and k>=n:
+                return True
+        if i<0 or j<0 or k<n:
+                return False
+        if s1[i]==s[j]:
+                return edit(s1,s2,k,n,i-1,j-1)
+        else:
+                return edit(s1,s2,k,n+1,i,j-1) or edit(s1,s2,k,n+1,i-1,j) or edit(s1,s2,k,n+1,i-1,j-1)
+        
+def oneAway(s1,s2):
+        if abs(len(s1)-len(s2))> 1:
+                return False
+        return edit(s1,s2,1,0,len(s1)-1,len(j)-1)
+
+
+#################
+def oneway(a,b,i,j,n,k):
+	if k>n:
+		return False
+	if j<0:
+		if i<0:
+			if k>n:
+				return False
+		else:
+			if k+1>n:
+				return False
+		return True
+	if a[i]==b[j]:
+		return oneway(a,b,i-1,j-1,n,k)
+	else:
+		return oneway(a,b,i,j-1,n,k+1) or oneway(a,b,i-1,j,n,k+1) or oneway(a,b,i-1,j-1,n,k+1)
+			
+		
+
+
+a="pale"
+b='ple'
+if len(b)>len(a):
+	a,b=b,a
+print oneway(a,b,len(a)-1,len(b)-1,1,0)
+
