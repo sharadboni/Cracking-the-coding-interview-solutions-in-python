@@ -1,0 +1,16 @@
+def binSearch(listy,x,l,r):
+  if l>r:
+    return -1
+  mid=(l+r)/2
+  mid_el=listy.elementAt(mid)
+  if mid_el==x:
+    return mid
+  if mid_el==-1 or mid_el>x:
+    return binsarch(listy,x,l,mid-1)
+  return binsearch(listy,x,mid+1,r) 
+    
+def main(listy,x):
+  last=1
+  while listy.elementAt(last)!=-1 and listy.elementAt(last)<x:
+    last*=2
+  binSearch(listy,x,0,last)
