@@ -9,7 +9,7 @@ def anagrams(arr):
 		else:
 			d[x]=[i]
 	arr=[]
-	for j in d.keys():
+	for j in d:
 		arr+=d[j]				
 	return arr
 
